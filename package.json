@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "commitizen": "4.2.4",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
@@ -37,7 +38,7 @@
   },
   "config": {
     "commitizen": {
-    "path": "node_modules/cz-customizable"
+      "path": "node_modules/cz-customizable"
     }
-    }
+  }
 }
