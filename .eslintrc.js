@@ -27,8 +27,8 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // "quotes": "error" // 默认
-    // "quotes": "off" // 修改不校验
-   "quotes": 'warn',
+    "quotes": "off", // 修改不校验
+  //  "quotes": 'warn',
     'space-before-function-paren': 'off', // 关闭prettier和eslint的方法名后面空格的冲突
     'vue/multi-word-component-names': [
       'error',
