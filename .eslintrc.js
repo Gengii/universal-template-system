@@ -23,11 +23,18 @@ module.exports = {
      * "warn" 或 1 - 开启规则，使⽤警告级别的错误：warn (不会导致程序退出)
      * "error" 或 2 - 开启规则，使⽤错误级别的错误：error (当被触发的时候，程序会退出)
      */
+     
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // "quotes": "error" // 默认
     // "quotes": "off" // 修改不校验
-    quotes: 'warn',
-    'space-before-function-paren': 'off'// 关闭prettier和eslint的方法名后面空格的冲突
+   "quotes": 'warn',
+    'space-before-function-paren': 'off', // 关闭prettier和eslint的方法名后面空格的冲突
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['index'] //需要忽略的组件名
+      }
+    ]
   }
 }
