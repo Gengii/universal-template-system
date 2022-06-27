@@ -34,13 +34,15 @@
 /* eslint-disable */
 <script setup>
 import { reactive, ref, computed } from 'vue'
-import { login } from '../../api/user'
+// import { login } from '../../api/user'
+import { useStore } from 'vuex'
+import util from '../../utils/util'
 import md5 from 'md5'
 // import { TurnOff } from '@element-plus/icons-vue'
 //* username：用户名 password：密码
 const loginForm = reactive({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '123456'
 })
 //* input 验证
 const loginRules = reactive({
@@ -56,8 +58,10 @@ const loginRules = reactive({
 //* 密码框状态 默认password
 const isPassword = ref('password')
 //* 验证 from
-const loginRef = ref()
 
+const loginRef = ref()
+//* 使用vuex 异步方法
+const store = useStore()
 /**
  * 确认按钮事件
  */
@@ -66,10 +70,13 @@ const handleLoginBtn = async () => {
   await loginRef.value.validate(async (val) => {
     if (val) {
       //* 密码转MD5
-      loginForm.password = md5(loginForm.password)
-      const userInfo = await login(loginForm)
-      alert('ok')
-      console.log(userInfo)
+      const newUserData = util.deepClone(loginForm)
+      newUserData.password = md5(newUserData.password)
+      console.log(newUserData)
+      // const userInfo = await login(loginForm)
+      store.dispatch('user/userLogin', newUserData)
+      // alert('ok')
+      // console.log(userInfo)
     }
   })
 }
