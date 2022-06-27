@@ -129,6 +129,7 @@ const svgTypeSwtich = computed(() => {
         position: absolute;
         right: 15px;
         bottom: 8px;
+        cursor: pointer;
       }
     }
     .form-password {
@@ -137,6 +138,7 @@ const svgTypeSwtich = computed(() => {
         position: absolute;
         right: 15px;
         bottom: 8px;
+        cursor: pointer;
       }
     }
   }
