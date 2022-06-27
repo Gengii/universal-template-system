@@ -35,6 +35,7 @@
 <script setup>
 import { reactive, ref, computed } from 'vue'
 import { login } from '../../api/user'
+import md5 from 'md5'
 // import { TurnOff } from '@element-plus/icons-vue'
 //* username：用户名 password：密码
 const loginForm = reactive({
@@ -45,7 +46,7 @@ const loginForm = reactive({
 const loginRules = reactive({
   username: [
     { required: true, message: '输入用户名', trigger: 'blur' },
-    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+    { min: 3, max: 20, message: 'Length should be 3 to 20', trigger: 'blur' }
   ],
   password: [
     { required: true, message: '密码有误', trigger: 'blur' },
@@ -56,6 +57,7 @@ const loginRules = reactive({
 const isPassword = ref('password')
 //* 验证 from
 const loginRef = ref()
+
 /**
  * 确认按钮事件
  */
@@ -63,6 +65,8 @@ const handleLoginBtn = async () => {
   if (!loginRef.value) return
   await loginRef.value.validate(async (val) => {
     if (val) {
+      //* 密码转MD5
+      loginForm.password = md5(loginForm.password)
       const userInfo = await login(loginForm)
       alert('ok')
       console.log(userInfo)
