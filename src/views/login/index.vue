@@ -36,12 +36,12 @@
 import { reactive, ref, computed } from 'vue'
 import { login } from '../../api/user'
 // import { TurnOff } from '@element-plus/icons-vue'
-// username：用户名 password：密码
+//* username：用户名 password：密码
 const loginForm = reactive({
   username: '',
   password: ''
 })
-// input 验证
+//* input 验证
 const loginRules = reactive({
   username: [
     { required: true, message: '输入用户名', trigger: 'blur' },
@@ -52,9 +52,9 @@ const loginRules = reactive({
     { min: 3, max: 6, message: 'Length should be 3 to 6', trigger: 'blur' }
   ]
 })
-// 密码框状态 默认password
+//* 密码框状态 默认password
 const isPassword = ref('password')
-// 验证 from
+//* 验证 from
 const loginRef = ref()
 /**
  * 确认按钮事件
