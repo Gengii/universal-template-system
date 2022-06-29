@@ -18,7 +18,7 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
   },
-  transpileDependencies: true,// 新创建vue项目后,会出现第一行代码爆红的现象,解决它的方法: transpileDependencies: true
+  // transpileDependencies: true,// 新创建vue项目后,会出现第一行代码爆红的现象,解决它的方法: transpileDependencies: true
   publicPath: './',
   devServer: {
     open: true, // 自动打开页面
@@ -36,5 +36,10 @@ module.exports = {
       }
     }
   },
-  lintOnSave: true // 设置是否在开发环境下每次保存代码时都启用 eslint验证
+  // 关闭eslint语法验证
+  // overlay: {
+  //   warning: false,
+  //   errors: false
+  // },
+  lintOnSave: false // 设置是否在开发环境下每次保存代码时都启用 eslint验证
 }
