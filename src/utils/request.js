@@ -2,6 +2,8 @@
 import axios from 'axios'
 //! 引入 loading
 import loading from './loading'
+//! 引入ElMessage
+import { ElMessage } from 'element-plus'
 //! 引入md5
 import md5 from 'md5'
 //! 创建axios 实例
@@ -31,9 +33,20 @@ http.interceptors.response.use(
   (resolve) => {
     //* 关闭loading加载
     loading.close()
-    return resolve
+    //! 解构请求的数据
+    const { success, data, message } = resolve.data
+    if (success) {
+      return data
+    } else {
+      // ElMessage.success(message)
+      mesAlert(message)
+      return Promise.reject(new Error(message))
+    }
+    // return resolve
   },
   (error) => {
+    // ElMessage.error(error.message)
+    mesAlert(error.message)
     //* 关闭loading加载
     loading.close()
     return Promise.reject(error)
@@ -54,6 +67,11 @@ const request = (opt) => {
     opt.params = opt.data || {}
   }
   return http(opt)
+}
+//! 修改提示信息
+const mesAlert =(message)=>{
+  let info =message || '发生未知错误';
+  ElMessage.error(info)
 }
 //* 导出 axios 实例对象
 export default request

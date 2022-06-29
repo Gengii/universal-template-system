@@ -21,15 +21,15 @@ module.exports = {
   transpileDependencies: true,// 新创建vue项目后,会出现第一行代码爆红的现象,解决它的方法: transpileDependencies: true
   publicPath: './',
   devServer: {
-    open: true,
+    open: true, // 自动打开页面
     port: 9527, // 端口号码
     https: false,
     host: 'localhost', // 主机名
     proxy: {
       // 匹配 '/dev-api' 开头的请求
       [process.env.VUE_APP_BASE_API]: {
-        target: process.env.VUE_APP_SERVICE_URL,
-        changeOrigin: true, // 开启代理
+        target: process.env.VUE_APP_SERVICE_URL, // 项目公共的请求地址
+        changeOrigin: true, // 是否跨域
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }

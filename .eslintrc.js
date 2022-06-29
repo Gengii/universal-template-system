@@ -31,10 +31,19 @@ module.exports = {
   //  "quotes": 'warn',
     'space-before-function-paren': 'off', // 关闭prettier和eslint的方法名后面空格的冲突
     'vue/multi-word-component-names': [
-      'error',
+      'off',
       {
-        ignores: ['index'] //需要忽略的组件名
+        ignores: ['index'], //需要忽略的组件名
+        labeled:false
       }
     ]
-  }
+  },
+  lintOnSave:false, //直接关闭eslint检查
+  devServer:{
+    // 关闭eslint语法验证
+    overlay:{
+      warning:false,
+      errors:false
+    }
+  },
 }
