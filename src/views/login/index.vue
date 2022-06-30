@@ -39,7 +39,7 @@ import { useStore } from 'vuex'
 import util from '../../utils/util'
 import md5 from 'md5'
 import { useRouter } from 'vue-router'
-import { getItem } from '../../utils/storage'
+// import { getItem } from '../../utils/storage'
 // import { TurnOff } from '@element-plus/icons-vue'
 //* username：用户名 password：密码
 const loginForm = reactive({
@@ -75,10 +75,12 @@ const handleLoginBtn = async () => {
       //* 密码转MD5
       const newUserData = util.deepClone(loginForm)
       newUserData.password = md5(newUserData.password)
-      // console.log(newUserData)
+      console.log(newUserData)
       // const userInfo = await login(loginForm)
-      store.dispatch('user/userLogin', newUserData)
-      if (getItem('userToken')) router.push('/')
+      const response = await store.dispatch('user/userLogin', newUserData)
+      // if (getItem('userToken')) router.push('/')
+      // console.log(response);
+      if (response.token) router.push('/')
       // router.push('/')
       // alert('ok')
       // console.log(userInfo)

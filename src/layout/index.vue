@@ -2,7 +2,7 @@
   <div class="app-wrapper">
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container">
-      <div class="fiexed-header">
+      <div class="fixed-header">
         <navbar></navbar>
       </div>
       <app-main></app-main>

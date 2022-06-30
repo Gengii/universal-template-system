@@ -1,10 +1,10 @@
-import * as UserApi from '../../api/user'
+import UserApi from '../../api/user'
 import { setItem, getItem } from '../../utils/storage'
 export default {
   namespaced: true, //! 命名空间
-  state: () => {
+  state: () => ({
     token: '' || getItem('userToken')
-  },
+  }),
   mutations: {
     setToken(state, token) {
       state.token = token
@@ -18,6 +18,7 @@ export default {
         const response = await UserApi.login(payload)
         // console.log(response)
         commit('setToken', response.token)
+        return response
       } catch (error) {
         console.log(error)
       }
